@@ -53,7 +53,7 @@ sleep 1
 
 git clone https://github.com/NibiruChain/nibiru.git
 cd nibiru
-git checkout v0.16.3
+git checkout v0.19.2
 make install
 
 nibid config chain-id $NIBIRU_CHAIN_ID
