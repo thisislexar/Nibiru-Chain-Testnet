@@ -27,7 +27,7 @@ sudo apt update && sudo apt upgrade -y
 echo -e "\e[1m\e[32m2. Gerekli kurulumlar yapiliyor.. \e[0m"
 echo "======================================================"
 sleep 1
-sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
+sudo apt install curl tar wget clang pkg-config libssl-dev libleveldb-dev jq build-essential bsdmainutils git make ncdu htop screen unzip bc fail2ban htop -y
 
 
 echo -e "\e[1m\e[32m2. Go Yukleniyor.. \e[0m"
