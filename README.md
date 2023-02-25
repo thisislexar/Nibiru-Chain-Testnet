@@ -50,7 +50,7 @@ curl https://files.itrocket.net/testnet/nibiru/snap_nibiru.tar.lz4 | lz4 -dc - |
 
 mv $HOME/.nibid/priv_validator_state.json.backup $HOME/.nibid/data/priv_validator_state.json
 
-sudo systemctl restart nibid && sudo journalctl -u nibid -f
+sudo systemctl restart nibid && sudo journalctl -fu nibid -o cat
 ``` 
 
 
