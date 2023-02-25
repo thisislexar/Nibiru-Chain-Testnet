@@ -53,6 +53,9 @@ mv $HOME/.nibid/priv_validator_state.json.backup $HOME/.nibid/data/priv_validato
 sudo systemctl restart nibid && sudo journalctl -fu nibid -o cat
 ``` 
 
+![image](https://user-images.githubusercontent.com/101462877/221354368-e430ee4d-38c4-473d-8752-ce0105a199fc.png)
+
+Yukarıdaki gibi false çıktısı aldıktan sonra devam.
 
 ## Cüzdan oluşturalım.
 ```
