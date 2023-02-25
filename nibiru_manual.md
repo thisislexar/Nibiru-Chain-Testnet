@@ -48,6 +48,8 @@ nibid init <MONIKERADINIZ> --chain-id nibiru-testnet-2
 ```
 curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
 wget -O $HOME/.nibid/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nibiru/addrbook.json"
+```
+```
 pruning="custom" && \
 pruning_keep_recent="100" && \
 pruning_keep_every="0" && \
