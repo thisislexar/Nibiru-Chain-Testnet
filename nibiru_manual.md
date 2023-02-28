@@ -15,8 +15,7 @@ sudo apt install lz4 -y
 # Go yükleyin.
 
 ```bash
-ver="1.18.3" && \
-cd $HOME && \
+ver="1.19" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
 sudo rm -rf /usr/local/go && \
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
@@ -32,26 +31,27 @@ go version
 cd $HOME
 git clone https://github.com/NibiruChain/nibiru
 cd nibiru
-git checkout v0.16.3
+git checkout v0.19.2
 make install
 ```
 
 # Node'u başlatın.
 
 ```bash
-nibid config chain-id nibiru-testnet-2
+nibid config chain-id nibiru-itn-1
 ```
 ```bash
-nibid init <MONIKERADINIZ> --chain-id nibiru-testnet-2
+nibid init <MONIKERADINIZ> --chain-id nibiru-itn-1
 ```
 
 
 # Genesis ve addrbook dosyaları, seed/peer, prunning ve min gas price ayarları.
 
 ```bash
-curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
+curl -s https://networks.itn.nibiru.fi/nibiru-itn-1/genesis > $HOME/.nibid/config/genesis.json
 wget -O $HOME/.nibid/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nibiru/addrbook.json"
 ```
+
 ```bash
 pruning="custom" && \
 pruning_keep_recent="100" && \
@@ -71,9 +71,9 @@ sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0unibi\"/;" ~
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.nibid/config/config.toml
 external_address=$(wget -qO- eth0.me) 
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.nibid/config/config.toml
-peers=""
+peers="d5519e378247dfb61dfe90652d1fe3e2b3005a5b@65.109.68.190:39656,68874e60acc2b864959ab97e651ff767db47a2ea@65.108.140.220:26656,769b35816998e91918569c3bbebb6e016ddd74b5@35.243.210.205:26656,e2b8b9f3106d669fe6f3b49e0eee0c5de818917e@213.239.217.52:32656"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.nibid/config/config.toml
-seeds="dabcc13d6274f4dd86fd757c5c4a632f5062f817@seed-2.nibiru-testnet-2.nibiru.fi:26656,a5383b33a6086083a179f6de3c51434c5d81c69d@seed-1.nibiru-testnet-2.nibiru.fi:26656"
+seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.nibid/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 100/g' $HOME/.nibid/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 100/g' $HOME/.nibid/config/config.toml
