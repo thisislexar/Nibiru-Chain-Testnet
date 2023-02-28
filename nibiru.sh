@@ -14,7 +14,7 @@ if [ ! $NODENAME ]; then
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
 
-echo "export NIBIRU_CHAIN_ID=nibiru-testnet-2" >> $HOME/.bash_profile
+echo "export NIBIRU_CHAIN_ID=nibiru-itn-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo -e "\e[1m\e[32m1. Sunucu guncellemesi yapiliyor.. \e[0m"
@@ -35,8 +35,7 @@ echo "======================================================"
 sleep 1
 
 if ! [ -x "$(command -v go)" ]; then
-ver="1.18.3" && \
-cd $HOME && \
+ver="1.19" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
 sudo rm -rf /usr/local/go && \
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
@@ -55,7 +54,7 @@ sleep 1
 cd $HOME
 git clone https://github.com/NibiruChain/nibiru
 cd nibiru
-git checkout v0.16.3
+git checkout v0.19.2
 make install
 
 nibid config chain-id $NIBIRU_CHAIN_ID
@@ -67,7 +66,7 @@ echo -e "\e[1m\e[32m3. Genesis dosyasi indiriliyor, seed/peer ayari yapiliyor.. 
 echo "======================================================"
 sleep 1
 
-curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
+curl -s https://networks.itn.nibiru.fi/nibiru-itn-1/genesis > $HOME/.nibid/config/genesis.json
 wget -O $HOME/.nibid/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nibiru/addrbook.json"
 
 
