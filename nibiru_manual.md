@@ -1,20 +1,20 @@
 # Kuruluma başlıyoruz. Öncelike sunucumuza gerekli güncellemeleri ve kurulumları yapalım.
 
-```
+```bash
 sudo su
 cd
 sudo apt update && sudo apt upgrade -y
 ```
-```
+```bash
 sudo apt install curl tar wget clang pkg-config libssl-dev libleveldb-dev jq build-essential bsdmainutils git make ncdu htop screen unzip bc fail2ban htop -y
 ```
-```
+```bash
 sudo apt install lz4 -y
 ```
 
 # Go yükleyin.
 
-```
+```bash
 ver="1.18.3" && \
 cd $HOME && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
@@ -28,7 +28,7 @@ go version
 
 # Binary dosyalarını yükleyin ve kurun.
 
-```
+```bash
 cd $HOME
 git clone https://github.com/NibiruChain/nibiru
 cd nibiru
@@ -38,21 +38,21 @@ make install
 
 # Node'u başlatın.
 
-```
+```bash
 nibid config chain-id nibiru-testnet-2
 ```
-```
+```bash
 nibid init <MONIKERADINIZ> --chain-id nibiru-testnet-2
 ```
 
 
 # Genesis ve addrbook dosyaları, seed/peer, prunning ve min gas price ayarları.
 
-```
+```bash
 curl -s https://rpc.testnet-2.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
 wget -O $HOME/.nibid/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nibiru/addrbook.json"
 ```
-```
+```bash
 pruning="custom" && \
 pruning_keep_recent="100" && \
 pruning_keep_every="0" && \
@@ -62,11 +62,11 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_rec
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" ~/.nibid/config/app.toml && \
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" ~/.nibid/config/app.toml
 ```
-```
+```bash
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.nibid/config/config.toml
 ```
-```
+```bash
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0unibi\"/;" ~/.nibid/config/app.toml
 sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\"/" $HOME/.nibid/config/config.toml
 external_address=$(wget -qO- eth0.me) 
@@ -91,7 +91,7 @@ CONFIG_TOML="$HOME/.nibid/config/config.toml"
 
 # Servis dosyası oluşturun.
 
-```
+```bash
 sudo tee /etc/systemd/system/nibid.service > /dev/null <<EOF
 [Unit]
 Description=nibiru
@@ -111,7 +111,7 @@ EOF
 
 # Servis'i başlatın.
 
-```
+```bash
 sudo systemctl daemon-reload
 systemctl restart systemd-journald.service
 sudo systemctl enable nibid
