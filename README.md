@@ -22,7 +22,7 @@ NODE TİPİ | CPU     | RAM      | SSD     |
 
 # 1a) Script ile kurulum.
 
-```
+```bash
 wget -O nibiru.sh https://raw.githubusercontent.com/thisislexar/Nibiru-Chain-Testnet/main/nibiru.sh && chmod +x nibiru.sh && ./nibiru.sh
 ```
 
@@ -34,13 +34,13 @@ Node bilginizi geliştirmek adına dilerseniz [Manuel Kurulum](https://github.co
 
 ## Sync durumunu kontrol etmek için:
 
-```
+```bash
 nibid status 2>&1 | jq .SyncInfo
 ``` 
 
 ## Daha hızlı sync olmak ve node'un daha az alan kaplaması için snapshot atabilirsiniz.
 
-```
+```bash
 sudo systemctl stop nibid
 
 cp $HOME/.nibid/data/priv_validator_state.json $HOME/.nibid/priv_validator_state.json.backup
@@ -58,12 +58,12 @@ sudo systemctl restart nibid && sudo journalctl -fu nibid -o cat
 Yukarıdaki gibi false çıktısı aldıktan sonra devam.
 
 ## Cüzdan oluşturalım.
-```
+```bash
 nibid keys add <CÜZDANADI>
 ``` 
 Var olan bir cüzdanı kullanmak isterseniz:
 
-```
+```bash
 nibid keys add <CÜZDANADI> --recover
 ``` 
 
@@ -75,7 +75,7 @@ nibid keys add <CÜZDANADI> --recover
 ## Validator oluşturalım.
 
 
-```
+```bash
 nibid tx staking create-validator \
   --amount 1000000unibi \
   --from <CÜZDANADI> \
@@ -95,32 +95,32 @@ nibid tx staking create-validator \
 
 Log kontrolü
 
-```
+```bash
 sudo journalctl -fu nibid -o cat
 ```
 
 
 Servisi durdurma
 
-```
+```bash
 sudo systemctl stop nibid
 ```
 
 Servisi tekrar başlatma
 
-```
+```bash
 sudo systemctl restart nibid
 ```
 
 Token delege etme
 
-```
+```bash
 nibid tx staking delegate $(nibid keys show wallet --bech val -a) 1000000unibi --from <CÜZDANADI> --chain-id nibiru-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.025unibi -y
 ```
 
 Validator düzenleme
 
-```
+```bash
 nibid tx staking edit-validator \
   --moniker=$NODENAME \
   --identity="<KEYBASE ID'NİZ>" \
@@ -133,7 +133,7 @@ nibid tx staking edit-validator \
 
 # Node silmek için:
 
-```
+```bash
 sudo systemctl stop nibid && \
 sudo systemctl disable nibid && \
 rm /etc/systemd/system/nibid.service && \
