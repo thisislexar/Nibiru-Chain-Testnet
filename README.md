@@ -85,7 +85,7 @@ nibid tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey $(nibid tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id nibiru-testnet-2 \
+  --chain-id nibiru-itn-1 \
   --website="https://lossnode.info" \
   --details="Testing the Nibiru"
 ```
@@ -115,7 +115,7 @@ sudo systemctl restart nibid
 Token delege etme
 
 ```bash
-nibid tx staking delegate $(nibid keys show wallet --bech val -a) 1000000unibi --from <CÜZDANADI> --chain-id nibiru-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.025unibi -y
+nibid tx staking delegate $(nibid keys show wallet --bech val -a) 1000000unibi --from <CÜZDANADI> --chain-id nibiru-itn-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.025unibi -y
 ```
 
 Validator düzenleme
@@ -126,7 +126,7 @@ nibid tx staking edit-validator \
   --identity="<KEYBASE ID'NİZ>" \
   --website="<WEBSİTE LİNKİ>" \
   --details="AÇIKLAMA" \
-  --chain-id=nibiru-testnet-2 \
+  --chain-id=nibiru-itn-1 \
   --from=<CÜZDANADI>
 ``` 
 
