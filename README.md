@@ -38,6 +38,22 @@ Node bilginizi geliştirmek adına dilerseniz [Manuel Kurulum](https://github.co
 nibid status 2>&1 | jq .SyncInfo
 ``` 
 
+## Daha hızlı sync olmak ve node'un daha az yer kaplaması için snapshot atabilirsiniz.
+```bash
+sudo systemctl stop nibid
+cp $HOME/.nibid/data/priv_validator_state.json $HOME/.nibid/priv_validator_state.json.backup
+rm -rf $HOME/.nibid/data
+``` 
+
+```bash
+curl -L https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.nibid
+mv $HOME/.nibid/priv_validator_state.json.backup $HOME/.nibid/data/priv_validator_state.json
+``` 
+
+```bash
+sudo systemctl start nibid && sudo journalctl -fu nibid -o cat
+``` 
+
 ![image](https://user-images.githubusercontent.com/101462877/221354368-e430ee4d-38c4-473d-8752-ce0105a199fc.png)
 
 Yukarıdaki gibi false çıktısı aldıktan sonra devam.
