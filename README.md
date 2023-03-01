@@ -40,8 +40,6 @@ systemctl restart nibid
 ## Sync durumunu kontrol etmek için:
 
 ```bash
-cp /root/go/bin/nibid /usr/local/bin
-systemctl restart nibid
 nibid status 2>&1 | jq .SyncInfo
 ``` 
 
