@@ -1,6 +1,6 @@
 <h1 align="center">Nibiru Chain Ödüllü Testneti Kurulum Rehberi
 
-## Selams, bugün Nibiru Chain'in testnetine katılıyor olacağız. Şuan için ödülsüz, ancak ödüllüsü yakında başlayacak. Aşağıdaki formu doldurmayı unutmayın. Sağ üstten yıldızlayıp forklamayı unutmayalım. Sorularınız için: [LossNode Chat](https://t.me/LossNode)
+## Selams, bugün Nibiru Chain'in ÖDÜLLÜ testnetine katılıyor olacağız. Aşağıdaki formu doldurmayı unutmayın. Sağ üstten yıldızlayıp forklamayı unutmayalım. Sorularınız için: [LossNode Chat](https://t.me/LossNode)
 
 
 ## FORM: https://gleam.io/yW6Ho/nibiru-incentivized-testnet-registration
